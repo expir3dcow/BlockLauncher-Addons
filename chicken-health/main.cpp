@@ -35,6 +35,6 @@ int getMaxHealth(){
 JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void * reserved){
   void** chicken_vtable = (void**)dlsym(RTLD_DEFAULT,"_ZTV7Chicken");
   //reconstructVTable(chicken_vtable); //prints all the offsets to log, including max health which was 104
-  chicken_vtable[104] = getMaxHealth();
+  chicken_vtable[104] = (void*) &getMaxHealth();
   return JNI_VERSION_1_2;
 }
